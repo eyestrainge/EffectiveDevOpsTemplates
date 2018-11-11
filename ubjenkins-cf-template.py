@@ -76,6 +76,7 @@ t.add_resource(ec2.SecurityGroup(
 
 ud = Base64(Join('\n', [
     "#!/bin/bash",
+    "apt update",
     "apt install -y git",
     "apt install -y python",
     "apt install -y ansible",
