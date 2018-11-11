@@ -77,6 +77,7 @@ t.add_resource(ec2.SecurityGroup(
 ud = Base64(Join('\n', [
     "#!/bin/bash",
     "apt install -y git",
+    "apt install -y python",
     "apt install -y ansible",
     AnsiblePullCmd,
     "echo '*/10 * * * * {}' > /etc/cron.d/ansible-pull".format(AnsiblePullCmd)
