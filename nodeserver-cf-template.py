@@ -168,7 +168,7 @@ ud = Base64(Join('\n', [
     "apt update",
     "apt install -y git",
     "apt install -y python",
-    "apt install -y python-boto"
+    "apt install -y python-boto",
     "apt install -y ansible",
     AnsiblePullCmd,
     "echo '*/10 * * * * {}' > /etc/cron.d/ansible-pull".format(AnsiblePullCmd)
