@@ -91,7 +91,7 @@ t.add_resource(ecs.Service(
         TargetGroupArn=ImportValue(
             Join(
                 "-",
-                [Select(0, Split("-", Ref("AWS::StackName"))), "alb-helloworld-target-group"]
+                [Select(0, Split("-", Ref("AWS::StackName"))), "alb-target-group"]
             ),
         ),
     )],
