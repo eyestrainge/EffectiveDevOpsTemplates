@@ -1,0 +1,39 @@
+nodeserver.yml			requires: python-boto
+library/aws_codedeploy		BOOLEANS : [ "yes", "no" ]	<--- sudo ps aux | grep -i deploy
+
+
+
+If we were to carve helloworld function from our monolith:
+--
+var aws = require('aws-sdk');
+var http = require("http");
+var lambda = new aws.Lambda({
+  region: 'us-east-1'
+});
+
+http.createServer(function (request, response) {
+  lambda.invoke({
+    FunctionName: 'helloworld-dev-hello',
+  }, function(err, data) {
+    if (err) {
+      console.log(err, err.stack);
+    } else {
+      response.writeHead(200, {'Content-Type': 'text/plain'});
+      response.end(JSON.parse(data.Payload).body);
+    }
+  })
+}).listen(3000)
+console.log('Server running');
+
+
+
+If we were to expand to multiple regions
+--
+def AddAMI(template):
+    template.add_mapping("RegionMap", {
+        "us-east-1": {"AMI": "ami-a4c7edb2"},
+        "us-west-2": {"AMI": "ami-6df1e514"},
+        "eu-west-1": {"AMI": "ami-327f5352"}
+})
+
+ImageId=FindInMap("RegionMap", Ref("AWS::Region"), "AMI"),
